@@ -1,30 +1,20 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:aplikasitest2/main.dart';
+import 'package:aplikasitest1/main.dart'; // Adjust the import based on your actual file structure
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Biodata displays correct information', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the biodata is displayed correctly.
+    expect(find.text('Nama: Rifki Ihsan Maulana'), findsOneWidget);
+    expect(find.text('NIM: 17220218'), findsOneWidget);
+    expect(find.text('Kelas: 17.5C.05'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that incorrect information is not displayed.
+    expect(find.text('Nama: John Doe'), findsNothing);
+    expect(find.text('NIM: 12345678'), findsNothing);
+    expect(find.text('Kelas: 18.5C.01'), findsNothing);
   });
 }
